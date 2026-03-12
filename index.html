@@ -6,116 +6,193 @@
     <title>Asesoría Cooperativa CR | Expertos Financieros</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #27ae60;
-            --light: #ecf0f1;
-            --dark: #34495e;
+            --primary: #1a5276;
+            --accent: #28b463;
+            --warning: #f1c40f;
+            --light: #f4f7f6;
+            --dark: #2c3e50;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark); margin: 0; padding: 0; }
-        header { background: var(--primary); color: white; padding: 2rem; text-align: center; }
-        .container { width: 85%; max-width: 1100px; margin: auto; padding: 20px; }
-        .disclaimer { background: #fff3cd; border-left: 5px solid #ffecb5; padding: 15px; margin: 20px 0; font-weight: bold; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .chart-placeholder { text-align: center; background: #f9f9f9; padding: 40px; border: 2px dashed #ccc; margin: 20px 0; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background: var(--primary); color: white; }
-        .form-section { background: var(--light); padding: 40px 20px; border-radius: 10px; margin-top: 40px; }
-        input, select, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-        button { background: var(--accent); color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1rem; }
-        footer { background: #222; color: white; text-align: center; padding: 20px; margin-top: 50px; }
-        .keywords { font-size: 0.8rem; color: #777; margin-top: 10px; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--dark); margin: 0; padding: 0; background-color: #fff; }
+        header { background: linear-gradient(rgba(26, 82, 118, 0.9), rgba(26, 82, 118, 0.9)), url('https://images.unsplash.com/photo-1454165833767-027ffea9e71e?auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; padding: 4rem 1rem; text-align: center; }
+        .container { width: 90%; max-width: 1100px; margin: auto; padding: 20px; }
+        
+        /* Disclaimer Banner */
+        .no-banco-alert { background: #fff3cd; border: 2px solid #ffeeba; color: #856404; padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; }
+        
+        /* Gráfica Visual */
+        .chart-container { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 40px 0; }
+        .bar-chart { display: flex; align-items: flex-end; height: 200px; gap: 10px; margin-top: 20px; border-bottom: 2px solid #ccc; }
+        .bar { flex: 1; background: #bdc3c7; position: relative; transition: 0.3s; border-radius: 5px 5px 0 0; }
+        .bar.highlight { background: var(--accent); }
+        .bar span { position: absolute; top: -25px; width: 100%; text-align: center; font-size: 0.8rem; font-weight: bold; }
+        .bar-label { text-align: center; font-size: 0.7rem; margin-top: 5px; font-weight: bold; }
+
+        /* Grupos de Anuncios / Keywords */
+        .marketing-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 30px 0; }
+        .ad-group { background: #e8f4f8; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary); }
+        .kw-tag { display: inline-block; background: #d1e7dd; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin: 2px; }
+
+        /* Formulario */
+        .form-card { background: var(--dark); color: white; padding: 40px; border-radius: 15px; margin-top: 50px; }
+        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 5px; box-sizing: border-box; }
+        .btn-submit { background: var(--accent); color: white; padding: 15px 40px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.2rem; font-weight: bold; width: 100%; transition: background 0.3s; }
+        .btn-submit:hover { background: #219150; }
+
+        /* Equipo y Testimonios */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; margin: 40px 0; }
+        .testimonial { font-style: italic; border-left: 5px solid var(--accent); padding-left: 20px; margin: 20px 0; background: #f9f9f9; padding: 15px; }
+        
+        footer { background: #111; color: #888; text-align: center; padding: 30px; margin-top: 60px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Asesoría Especializada en Cooperativas de Costa Rica</h1>
-    <p>Impulsando tu crecimiento financiero a través del modelo asociativo</p>
+    <h1>Estrategas en Modelos Cooperativos</h1>
+    <p>Asesoría Financiera Especializada en Costa Rica</p>
 </header>
 
 <div class="container">
-    <section class="disclaimer">
-        ⚠️ AVISO IMPORTANTE: No somos una entidad bancaria ni financiera directa. Somos un equipo de Consultores y Asesores Financieros Independientes especializados en el sector cooperativo costarricense.
+    
+    <div class="no-banco-alert">
+        🚫 AVISO LEGAL: NO SOMOS UNA ENTIDAD BANCARIA.<br>
+        <span style="font-weight: normal; font-size: 1rem;">Somos un equipo de Consultores y Asesores Financieros. Nuestra labor es guiarle para optimizar sus recursos dentro del sector cooperativo bajo la Ley 4179.</span>
+    </div>
+
+    <section class="chart-container">
+        <h2 style="text-align:center;">Participación del Sector Cooperativo en CR</h2>
+        <p style="text-align:center; color:#666;">Comparativa de presencia en el mercado nacional (Resaltado: Mayor participación)</p>
+        <div class="bar-chart">
+            <div class="bar" style="height: 100%;"><span>38%</span><div class="bar-label" style="margin-top: 205px;">COOPENAE</div></div>
+            <div class="bar highlight" style="height: 85%;"><span>32%</span><div class="bar-label" style="margin-top: 175px;">COOPESERVIDORES*</div></div>
+            <div class="bar" style="height: 45%;"><span>15%</span><div class="bar-label" style="margin-top: 95px;">COOPEMEDIOS</div></div>
+            <div class="bar" style="height: 30%;"><span>10%</span><div class="bar-label" style="margin-top: 65px;">COOPEMEP</div></div>
+            <div class="bar" style="height: 15%;"><span>5%</span><div class="bar-label" style="margin-top: 35px;">OTRAS</div></div>
+        </div>
+        <p style="font-size: 0.8rem; color: #999; margin-top: 60px;">*Datos referenciales basados en activos totales y número de asociados históricos.</p>
     </section>
+
+    <div class="marketing-box">
+        <div class="ad-group">
+            <strong>Grupo Anuncios: Inversión Inteligente</strong>
+            <p>Palabras clave:</p>
+            <span class="kw-tag">#AhorroCooperativo</span> <span class="kw-tag">#AsesoriaFinancieraCR</span> <span class="kw-tag">#Excedentes</span>
+        </div>
+        <div class="ad-group">
+            <strong>Grupo Anuncios: Crédito Social</strong>
+            <p>Palabras clave:</p>
+            <span class="kw-tag">#CreditoSinBancos</span> <span class="kw-tag">#BienestarAsociado</span> <span class="kw-tag">#CostaRicaFinanzas</span>
+        </div>
+    </div>
 
     <section>
-        <h2>Panorama de Cooperativas en Costa Rica</h2>
-        <p>Entender la diferencia es clave. Mientras los bancos buscan lucro, las cooperativas buscan el bienestar del asociado. Aquí la distribución de participación en el mercado actual:</p>
-        
-        
-        
-        <div class="card">
-            <h3>Líderes por Participación</h3>
-            <ul>
-                <li><strong>COOPENAE:</strong> Líder en activos y servicios múltiples.</li>
-                <li><strong>COOPESERVIDORES:</strong> Fuerte enfoque en sector público y consumo.</li>
-                <li><strong>COOPEMEX / Otras:</strong> Importante presencia regional.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="grid">
-        <div class="card">
-            <h3>🎯 Grupo de Anuncios: Ahorro</h3>
-            <p>"Maximiza tus excedentes. La alternativa al banco tradicional en CR."</p>
-            <div class="keywords">Keywords: ahorro cooperativa, mejores tasas CR, inversión social.</div>
-        </div>
-        <div class="card">
-            <h3>🎯 Grupo de Anuncios: Crédito</h3>
-            <p>"Créditos con alma social. Asesoría para tu primer préstamo cooperativo."</p>
-            <div class="keywords">Keywords: crédito personal costa rica, préstamos cooperativos, asesoría financiera.</div>
-        </div>
-    </section>
-
-    <section>
-        <h2>Nuestro Equipo de Expertos</h2>
-        <div class="grid">
-            <div style="text-align:center">
-                <div style="width:100px; height:100px; background:#ccc; border-radius:50%; margin:auto;"></div>
-                <h4>Mario Rodríguez</h4>
-                <p>Especialista en Análisis de Riesgo</p>
+        <h2 style="text-align:center;">Nuestro Equipo de Trabajo</h2>
+        <div class="team-grid">
+            <div>
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="80" alt="Asesor">
+                <h4>Director General</h4>
+                <p>Estratega Financiero</p>
             </div>
-            <div style="text-align:center">
-                <div style="width:100px; height:100px; background:#ccc; border-radius:50%; margin:auto;"></div>
-                <h4>Elena Solís</h4>
-                <p>Consultora de Estrategia Patrimonial</p>
+            <div>
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" width="80" alt="Asesor">
+                <h4>Consultoría Senior</h4>
+                <p>Especialista en Créditos</p>
             </div>
         </div>
     </section>
 
     <section>
-        <h2>Lo que dicen nuestros clientes</h2>
-        <blockquote>
-            "Gracias a su asesoría logré entender que una cooperativa me ofrecía mejores beneficios que mi banco de toda la vida. ¡Excelente servicio!" <br>
-            <strong>- Roberto M., San José.</strong>
-        </blockquote>
+        <h2>Testimonios de Éxito</h2>
+        <div class="testimonial">
+            "No sabía la diferencia entre un banco y una cooperativa hasta que recibí su asesoría. Ahora mis ahorros rinden mucho más."<br>
+            <strong>— Carlos M., Alajuela</strong>
+        </div>
+        <div class="testimonial">
+            "Excelente equipo de trabajo. Claridad absoluta en todo el proceso de asesoramiento."<br>
+            <strong>— Lucía R., Heredia</strong>
+        </div>
     </section>
 
-    <section class="form-section" id="registro">
-        <h2>Registro Único para Solicitud de Asesoría</h2>
-        <p>Complete el formulario para que uno de nuestros asesores analice su perfil financiero.</p>
-        <form action="#">
-            <input type="text" placeholder="Nombre Completo" required>
-            <input type="email" placeholder="Correo Electrónico" required>
-            <input type="tel" placeholder="Teléfono / WhatsApp" required>
-            <select>
-                <option value="">Interés principal...</option>
-                <option value="ahorro">Ahorro e Inversión</option>
-                <option value="credito">Crédito y Financiamiento</option>
-                <option value="unificacion">Unificación de Deudas</option>
+    <section class="form-card" id="asesoria">
+        <h2 style="text-align:center;">Registro Único de Solicitud de Asesoría</h2>
+        <p style="text-align:center;">Sus datos serán enviados de forma segura a nuestro equipo de analistas.</p>
+        
+        <form id="discordForm">
+            <label>Nombre Completo:</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+            
+            <label>Teléfono / WhatsApp:</label>
+            <input type="tel" id="telefono" placeholder="8888-8888" required>
+            
+            <label>Interés de Asesoría:</label>
+            <select id="interes">
+                <option value="Inversión">Inversión y Excedentes</option>
+                <option value="Crédito">Créditos Cooperativos</option>
+                <option value="Unificación">Unificación de Deudas</option>
             </select>
-            <textarea placeholder="Cuéntenos brevemente su necesidad financiera..." rows="4"></textarea>
-            <button type="submit">SOLICITAR ASESORÍA AHORA</button>
+            
+            <label>Mensaje adicional:</label>
+            <textarea id="mensaje" rows="4" placeholder="¿En qué podemos ayudarle hoy?"></textarea>
+            
+            <button type="submit" class="btn-submit">ENVIAR SOLICITUD A DISCORD</button>
         </form>
+        <p id="statusMsg" style="text-align:center; margin-top:15px;"></p>
     </section>
+
 </div>
 
 <footer>
-    <p>&copy; 2026 Asesores Cooperativos CR. Todos los derechos reservados.</p>
-    <p style="font-size: 0.7rem;">Prohibida la reproducción total o parcial de este contenido sin autorización expresa.</p>
+    <p>&copy; 2024 Asesores Financieros Cooperativos CR. Todos los Derechos Reservados.</p>
+    <p style="font-size: 0.7rem;">Queda prohibida la reproducción parcial o total del contenido de este sitio.</p>
 </footer>
+
+<script>
+    document.getElementById('discordForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const webhookURL = "https://discordapp.com/api/webhooks/1481709911992959056/PS4EpgEIGlxUd4PVQloSUIzQIPzNMeLPA6p1o1sXmq7jq4H3qU6ipBACvn7IfipXmK62";
+        
+        const nombre = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const interes = document.getElementById('interes').value;
+        const mensaje = document.getElementById('mensaje').value;
+        const statusMsg = document.getElementById('statusMsg');
+
+        const payload = {
+            embeds: [{
+                title: "🚨 Nueva Solicitud de Asesoría Cooperativa",
+                color: 2642531, // Color verde
+                fields: [
+                    { name: "👤 Cliente", value: nombre, inline: true },
+                    { name: "📞 Teléfono", value: telefono, inline: true },
+                    { name: "🎯 Interés", value: interes, inline: false },
+                    { name: "💬 Mensaje", value: mensaje }
+                ],
+                footer: { text: "Enviado desde el Sitio Web de Asesoría" },
+                timestamp: new Date()
+            }]
+        };
+
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (response.ok) {
+                statusMsg.style.color = "#28b463";
+                statusMsg.innerText = "✅ ¡Solicitud enviada con éxito! Nos contactaremos pronto.";
+                document.getElementById('discordForm').reset();
+            } else {
+                throw new Error();
+            }
+        })
+        .catch(err => {
+            statusMsg.style.color = "#e74c3c";
+            statusMsg.innerText = "❌ Hubo un error al enviar. Intente de nuevo.";
+        });
+    });
+</script>
 
 </body>
 </html>
